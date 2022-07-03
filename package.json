@@ -1,19 +1,24 @@
 {
-  "scripts": {
-    "dev": "nodemon --loader ts-node/esm --config nodemon.json src/app.ts",
-    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts",
-    "start-dev-ng": "cd ./src/ui/ && ng build --watch"
-  },
-  "type": "module",
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "typescript": "^4.7.4"
-  },
-  "dependencies": {
-    "body-parser": "^1.20.0",
-    "esm": "^3.2.25",
-    "express": "^4.18.1",
-    "ts-node": "^10.8.2",
-    "ts-node-dev": "^2.0.0"
-  }
+   "name": "travelplan",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "type": "module",
+   "devDependencies": {
+      "ts-node": "10.7.0",
+      "@types/node": "^16.11.10",
+      "typescript": "4.5.2"
+   },
+   "dependencies": {
+      "typeorm": "0.3.7",
+      "reflect-metadata": "^0.1.13",
+      "mysql": "^2.14.1",
+      "express": "^4.17.2",
+      "body-parser": "^1.19.1"
+   },
+   "scripts": {
+      "start": "node --loader ts-node/esm src/app.ts",
+      "start-dev": "nodemon --loader ts-node/esm --config nodemon.json src/app.ts",
+      "typeorm": "typeorm-ts-node-esm",
+      "start-dev-ng": "cd ./src/ui/ && ng build --watch"
+   }
 }
