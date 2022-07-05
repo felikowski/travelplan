@@ -3,18 +3,28 @@ import bodyParser from "body-parser"
 import {Request, Response} from "express"
 import {AppDataSource} from "./db/data-source.js"
 import {Routes} from "./routes.js"
-import {User} from "./db/entity/User.js"
 import {fileURLToPath} from "url";
 import {dirname} from "path";
 import path from 'path';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const __distfolder = path.join(__dirname, './ui/dist/ui');
+import {ngExpressEngine} from '@nguniversal/express-engine';
+import {AppServerModule} from "ui/src/app/app.server.module";
+
 AppDataSource.initialize().then(async () => {
 
     // create express app
     const app = express();
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
+
+    app.engine('html', ngExpressEngine({
+        bootstrap: AppServerModule,
+    }));
+    app.set('view engine', 'html');
+    app.set('views', __distfolder);
 
     // register express routes from defined application routes
     Routes.forEach(route => {
